@@ -1,8 +1,10 @@
 plugins {
+    id 'org.springframework.boot' version '2.3.4.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
     id 'java'
 }
 
-group 'fit.cv3.gradle'
+group 'cz.cvut.fit.matousi1'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -10,21 +12,13 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-}
-
-jar {
-    manifest {
-        attributes(
-                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
-                'Main-Class': 'App'
-        )
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testCompile 'org.junit.jupiter:junit-jupiter:5.7.0'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
 }
 
-tasks.register("hello" ){
-    doLast{
-        println " HELLo, gradle"
-    }
+test {
+    useJUnitPlatform()
 }
-

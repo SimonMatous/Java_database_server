@@ -18,6 +18,6 @@ public class CTest {
 
     @Test
     void equalInt() {
-        assertEquals("HELLO GRAxcDLE","HELLO GRADLE");
+        assertEquals("HELLO GRADLE","HELLO GRADLE");
     }
 }

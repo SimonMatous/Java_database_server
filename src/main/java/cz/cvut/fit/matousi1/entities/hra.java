@@ -17,6 +17,10 @@ import javax.persistence.*;
 public class hra {
 
     @Id
+    @GeneratedValue
+    private int id;
+
+    @NotNull
     private String nazev;
 
     @NotNull
@@ -28,8 +32,8 @@ public class hra {
     @ManyToMany
     @JoinTable(
             name = "hra_software",
-            joinColumns = @JoinColumn(name = "hra_nazev"),
-            inverseJoinColumns = @JoinColumn ( name = "software_nazev")
+            joinColumns = @JoinColumn(name = "hra_id"),
+            inverseJoinColumns = @JoinColumn ( name = "software_id")
     )
     private List<software> softwares;
 
@@ -69,5 +73,13 @@ public class hra {
 
     public void setHardware(String hardware) {
         this.hardware = hardware;
+    }
+
+    public void setNazev(String nazev) {
+        this.nazev = nazev;
+    }
+
+    public int getId() {
+        return id;
     }
 }

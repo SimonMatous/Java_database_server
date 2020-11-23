@@ -1,0 +1,62 @@
+POST http://localhost:8080/author
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"firstName": "John", "lastName": "Smith"}
+
+###
+
+POST http://localhost:8080/author
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"firstName": "James", "lastName": "Smith"}
+
+###
+
+POST http://localhost:8080/author
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"firstName": "John", "lastName": "Wayne"}
+
+###
+
+POST http://localhost:8080/book
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"title": "My Book", "authorIds":[1,3]}
+
+###
+
+POST http://localhost:8080/book
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"title": "Moje Kniha", "authorIds":[2], "translationOfBookId":  4}
+
+###
+
+POST http://localhost:8080/book
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"title": "Another Book", "authorIds":[3], "translationOfBookId":  4}
+
+###
+
+PUT http://localhost:8080/book/6
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"title": "Another Book", "authorIds":[3], "translationOfBookId":  null}
+
+###

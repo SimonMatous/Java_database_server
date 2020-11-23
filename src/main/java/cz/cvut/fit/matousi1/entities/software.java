@@ -3,6 +3,7 @@ package cz.cvut.fit.matousi1.entities;
 import com.sun.istack.NotNull;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.sql.Timestamp;
 
@@ -12,6 +13,10 @@ public class software {
 
 
     @Id
+    @GeneratedValue
+    private int id;
+
+    @NotNull
     private String software_nazev;
 
     @NotNull
@@ -37,4 +42,10 @@ public class software {
         return software_nazev;
     }
 
+    public int getId() {
+        return id;
+    }
+    public void setSoftware_nazev(String software_nazev) {
+        this.software_nazev = software_nazev;
+    }
 }

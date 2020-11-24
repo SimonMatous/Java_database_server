@@ -27,7 +27,7 @@ public class softwareController {
         return SoftwareService.findByIdAsDTO(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-    @PostMapping("/software") /** maybe change software to Software idk what it does and if it's important*/
+    @PostMapping("/software")
     softwareDTO save(@RequestBody softwareCreateDTO Software) { return SoftwareService.create(Software); }
 
     @PutMapping("/software/{id}")

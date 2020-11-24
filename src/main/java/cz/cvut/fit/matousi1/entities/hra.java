@@ -29,6 +29,11 @@ public class hra {
     @NotNull
     private Timestamp datum_vydani;
 
+    @NotNull
+    @ManyToOne
+    @JoinColumn( name = "studio_id")
+    private studio Studio;
+
     @ManyToMany
     @JoinTable(
             name = "hra_software",
@@ -40,10 +45,11 @@ public class hra {
     public hra() {
     }
 
-    public hra(String nazev, String hardware, Timestamp datum_vydani, List<software> softwares) {
+    public hra(String nazev, String hardware, Timestamp datum_vydani, studio studio, List<software> softwares) {
         this.nazev = nazev;
         this.hardware = hardware;
         this.datum_vydani = datum_vydani;
+        Studio = studio;
         this.softwares = softwares;
     }
 
@@ -81,5 +87,13 @@ public class hra {
 
     public int getId() {
         return id;
+    }
+
+    public studio getStudio() {
+        return Studio;
+    }
+
+    public void setStudio(studio studio) {
+        Studio = studio;
     }
 }

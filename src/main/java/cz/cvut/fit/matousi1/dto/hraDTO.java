@@ -1,6 +1,7 @@
 package cz.cvut.fit.matousi1.dto;
 
 
+
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -11,13 +12,15 @@ public class hraDTO {
     private final String hardware;
     private final Timestamp datum_vydani;
     private final List<Integer> software_ids;
+    private int studio_id;
 
-    public hraDTO(int id, String nazev, String hardware, Timestamp datum_vydani, List<Integer> software_ids) {
+    public hraDTO(int id, String nazev, String hardware, Timestamp datum_vydani, List<Integer> software_ids, int studio_id) {
         this.id = id;
         this.nazev = nazev;
         this.hardware = hardware;
         this.datum_vydani = datum_vydani;
         this.software_ids = software_ids;
+        this.studio_id = studio_id;
     }
 
     public Timestamp getDatum_vydani() {
@@ -37,4 +40,6 @@ public class hraDTO {
     public int getId() {
         return id;
     }
+
+    public int getStudio_id() { return studio_id; }
 }

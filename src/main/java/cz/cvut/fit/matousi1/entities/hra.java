@@ -17,7 +17,8 @@ import javax.persistence.*;
 public class hra {
 
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name="SequenceFive",initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SequenceFive")
     private int id;
 
     @NotNull

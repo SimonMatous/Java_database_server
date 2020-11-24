@@ -3,14 +3,13 @@ package cz.cvut.fit.matousi1.entities;
 
 import com.sun.istack.NotNull;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class location {
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name="SequenceFour",initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SequenceFour")
     private int id;
 
     @NotNull

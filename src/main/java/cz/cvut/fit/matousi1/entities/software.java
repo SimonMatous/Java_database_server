@@ -2,9 +2,7 @@ package cz.cvut.fit.matousi1.entities;
 
 import com.sun.istack.NotNull;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
@@ -13,7 +11,8 @@ public class software {
 
 
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name="SequenceTwo",initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SequenceTwo")
     private int id;
 
     @NotNull

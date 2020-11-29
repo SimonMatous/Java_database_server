@@ -1,6 +1,8 @@
 package cz.cvut.fit.matousi1.dto;
 
 
+
+
 public class locationDTO {
 
     private final int id;
@@ -29,5 +31,16 @@ public class locationDTO {
 
     public String getAddress() {
         return address;
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null || getClass() != obj.getClass())
+            return false;
+        locationDTO that = (locationDTO) obj;
+        return id == that.id;
     }
 }

@@ -24,16 +24,16 @@ public class savefile {
 
     @ManyToOne
     @NotNull /** CAN I ADD NOT NULL LIKE THIS ? */
-    @JoinColumn( name = "hra_id")
-    private hra Hra;
+    @JoinColumn( name = "game_id")
+    private game Game;
 
     public savefile() {}
 
-    public savefile(String name, Timestamp saved_at, int percOfGameFinished, hra hra) {
+    public savefile(String name, Timestamp saved_at, int percOfGameFinished, game game) {
         this.name = name;
         this.saved_at = saved_at;
         this.PercOfGameFinished = percOfGameFinished;
-        this.Hra = hra;
+        this.Game = game;
     }
 
     public int getId() {
@@ -64,11 +64,11 @@ public class savefile {
         PercOfGameFinished = percOfGameFinished;
     }
 
-    public hra getHra() {
-        return Hra;
+    public game getGame() {
+        return Game;
     }
 
-    public void setHra(hra hra) {
-        Hra = hra;
+    public void setGame(game game) {
+        Game = game;
     }
 }

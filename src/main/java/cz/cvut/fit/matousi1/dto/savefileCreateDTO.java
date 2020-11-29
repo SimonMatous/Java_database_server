@@ -1,20 +1,28 @@
 package cz.cvut.fit.matousi1.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.sql.Timestamp;
 
 public class savefileCreateDTO {
 
+    @JsonProperty("name")
     private final String name;
+    @JsonProperty("saved_at")
     private final Timestamp saved_at;
+    @JsonProperty("percOfGameFinished")
     private final int percOfGameFinished;
-    private final int hra_id;
+    @JsonProperty("game_id")
+    private final int game_id;
 
-    public savefileCreateDTO(String name, Timestamp saved_at, int percOfGameFinished, int hra_id) {
+    @JsonCreator
+    public savefileCreateDTO(String name, Timestamp saved_at, int percOfGameFinished, int game_id) {
         this.name = name;
         this.saved_at = saved_at;
         this.percOfGameFinished = percOfGameFinished;
-        this.hra_id = hra_id;
+        this.game_id = game_id;
     }
 
     public String getName() {
@@ -29,5 +37,5 @@ public class savefileCreateDTO {
         return percOfGameFinished;
     }
 
-    public int getHra_id() { return hra_id; }
+    public int getGame_id() { return game_id; }
 }

@@ -6,24 +6,33 @@ import java.sql.Timestamp;
 public class softwareDTO {
 
     private final int id;
-    private final String software_nazev;
-    private final Timestamp datum_vyniku;
+    private final String software_name;
+    private final Timestamp founded_in;
 
-    public softwareDTO(int id, String software_nazev, Timestamp datum_vyniku) {
+    public softwareDTO(int id, String software_name, Timestamp founded_in) {
         this.id = id;
-        this.software_nazev = software_nazev;
-        this.datum_vyniku = datum_vyniku;
+        this.software_name = software_name;
+        this.founded_in = founded_in;
     }
 
-    public Timestamp getDatum_vyniku() {
-        return datum_vyniku;
+    public Timestamp getFounded_in() {
+        return founded_in;
     }
 
-    public String getSoftware_nazev() {
-        return software_nazev;
+    public String getSoftware_name() {
+        return software_name;
     }
 
     public int getId() {
         return id;
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null || getClass() != obj.getClass())
+            return false;
+        softwareDTO that = (softwareDTO) obj;
+        return id == that.id;
     }
 }

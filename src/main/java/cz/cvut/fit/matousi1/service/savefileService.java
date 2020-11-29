@@ -3,9 +3,9 @@ package cz.cvut.fit.matousi1.service;
 
 import cz.cvut.fit.matousi1.dto.savefileCreateDTO;
 import cz.cvut.fit.matousi1.dto.savefileDTO;
-import cz.cvut.fit.matousi1.entities.hra;
+import cz.cvut.fit.matousi1.entities.game;
 import cz.cvut.fit.matousi1.entities.savefile;
-import cz.cvut.fit.matousi1.repository.hraRepository;
+import cz.cvut.fit.matousi1.repository.gameRepository;
 import cz.cvut.fit.matousi1.repository.savefileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,23 +19,23 @@ import java.util.stream.Collectors;
 public class savefileService {
 
     private final savefileRepository SavefileRepository;
-    private final hraRepository HraRepository;
+    private final gameRepository GameRepository;
 
 
     @Autowired
-    public savefileService(savefileRepository savefileRepository, hraRepository hraRepository) {
+    public savefileService(savefileRepository savefileRepository, gameRepository gameRepository) {
         SavefileRepository = savefileRepository;
-        HraRepository = hraRepository;
+        GameRepository = gameRepository;
     }
 
     public savefileDTO create(savefileCreateDTO SavefileCreateDTO) throws Exception {
-        Optional<hra> Hra = HraRepository.findById(SavefileCreateDTO.getHra_id());
-        if ( Hra.isEmpty())
+        Optional<game> Game = GameRepository.findById(SavefileCreateDTO.getGame_id());
+        if ( Game.isEmpty())
             throw new Exception("savefile not found");
 
         return toDTO(
             SavefileRepository.save(
-                    new savefile(SavefileCreateDTO.getName(), SavefileCreateDTO.getSaved_at(),SavefileCreateDTO.getPercOfGameFinished(),Hra.get())
+                    new savefile(SavefileCreateDTO.getName(), SavefileCreateDTO.getSaved_at(),SavefileCreateDTO.getPercOfGameFinished(),Game.get())
             )
         );
     }
@@ -47,14 +47,24 @@ public class savefileService {
             throw new Exception("savefile not found");
         savefile Savefile = OptionalSavefile.get();
 
-        Optional<hra> Hra = HraRepository.findById(SavefileCreateDTO.getHra_id());
-        if ( Hra.isEmpty())
+        Optional<game> Game = GameRepository.findById(SavefileCreateDTO.getGame_id());
+        if ( Game.isEmpty())
             throw new Exception("savefile not found");
         Savefile.setName(SavefileCreateDTO.getName());
         Savefile.setSaved_at(SavefileCreateDTO.getSaved_at());
         Savefile.setPercOfGameFinished(SavefileCreateDTO.getPercOfGameFinished());
-        Savefile.setHra(Hra.get());
+        Savefile.setGame(Game.get());
         return toDTO(Savefile);
+    }
+
+    @Transactional
+    public void delete (int id) throws Exception{
+        Optional<savefile> OptionalSavefile = findById(id);
+        if ( OptionalSavefile.isEmpty())
+            throw new Exception("savefile not found");
+        savefile Savefile = OptionalSavefile.get();
+
+        SavefileRepository.delete(Savefile);
     }
 
     public List<savefileDTO> findAll(){
@@ -78,7 +88,7 @@ public class savefileService {
                 Savefile.getName(),
                 Savefile.getSaved_at(),
                 Savefile.getPercOfGameFinished(),
-                Savefile.getHra().getId()
+                Savefile.getGame().getId()
         );
     }
 

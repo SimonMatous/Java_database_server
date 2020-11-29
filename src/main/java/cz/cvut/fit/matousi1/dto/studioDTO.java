@@ -30,4 +30,14 @@ public class studioDTO {
     }
 
     public int getLocation_id() { return Location_id; }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null || getClass() != obj.getClass())
+            return false;
+        studioDTO that = (studioDTO) obj;
+        return id == that.id;
+    }
 }

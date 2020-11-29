@@ -47,6 +47,16 @@ public class locationService {
         return toDTO(Location);
     }
 
+    @Transactional
+    public void delete (int id) throws Exception{
+        Optional<location> OptionalLocation = findById(id);
+        if ( OptionalLocation.isEmpty())
+            throw new Exception("location not found");
+        location Location = OptionalLocation.get();
+
+        LocationRepository.delete(Location);
+    }
+
     public List<location> findByIds(List<Integer> ids){
         return LocationRepository.findAllById(ids);
     }

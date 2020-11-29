@@ -16,35 +16,35 @@ public class software {
     private int id;
 
     @NotNull
-    private String software_nazev;
+    private String software_name;
 
     @NotNull
-    private Timestamp datum_vyniku;
+    private Timestamp founded_in;
 
     public software() {
     }
 
-    public software(String software_nazev, Timestamp datum_vyniku) {
-        this.software_nazev = software_nazev;
-        this.datum_vyniku = datum_vyniku;
+    public software(String software_name, Timestamp founded_in) {
+        this.software_name = software_name;
+        this.founded_in = founded_in;
     }
 
-    public Timestamp getDatum_vyniku() {
-        return datum_vyniku;
+    public Timestamp getFounded_in() {
+        return founded_in;
     }
 
-    public void setDatum_vyniku(Timestamp datum_vyniku) {
-        this.datum_vyniku = datum_vyniku;
+    public void setFounded_in(Timestamp founded_in) {
+        this.founded_in = founded_in;
     }
 
-    public String getSoftware_nazev() {
-        return software_nazev;
+    public String getSoftware_name() {
+        return software_name;
     }
 
     public int getId() {
         return id;
     }
-    public void setSoftware_nazev(String software_nazev) {
-        this.software_nazev = software_nazev;
+    public void setSoftware_name(String software_name) {
+        this.software_name = software_name;
     }
 }

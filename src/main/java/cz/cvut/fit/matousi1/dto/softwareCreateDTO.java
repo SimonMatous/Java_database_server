@@ -1,25 +1,31 @@
 package cz.cvut.fit.matousi1.dto;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.sql.Timestamp;
 
 
 public class softwareCreateDTO {
 
-    private final String software_nazev;
-    private final Timestamp datum_vyniku;
+    @JsonProperty("software_name")
+    private final String software_name;
+    @JsonProperty("founded_in")
+    private final Timestamp founded_in;
 
-    public softwareCreateDTO( String software_nazev, Timestamp datum_vyniku) {
+    @JsonCreator
+    public softwareCreateDTO( String software_name, Timestamp founded_in) {
 
-        this.software_nazev = software_nazev;
-        this.datum_vyniku = datum_vyniku;
+        this.software_name = software_name;
+        this.founded_in = founded_in;
     }
 
-    public Timestamp getDatum_vyniku() {
-        return datum_vyniku;
+    public Timestamp getFounded_in() {
+        return founded_in;
     }
 
-    public String getSoftware_nazev() {
-        return software_nazev;
+    public String getSoftware_name() {
+        return software_name;
     }
 
 }

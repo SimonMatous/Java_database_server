@@ -1,62 +1,31 @@
-POST http://localhost:8080/author
+
+
+POST http://localhost:8080/game
 Accept: */*
 Cache-Control: no-cache
 Content-Type: application/json
 
-{"firstName": "John", "lastName": "Smith"}
+{"name": "James", "hardware": "Smith","release_date" : "1980-01-01T00:00:01","software_ids":[1],"studio_id": 1}
 
 ###
 
-POST http://localhost:8080/author
+POST http://localhost:8080/location
 Accept: */*
 Cache-Control: no-cache
 Content-Type: application/json
 
-{"firstName": "James", "lastName": "Smith"}
+{"state": "testaste", "town": "Wayne","address": null}
 
 ###
 
-POST http://localhost:8080/author
+POST http://localhost:8080/studio
 Accept: */*
 Cache-Control: no-cache
 Content-Type: application/json
 
-{"firstName": "John", "lastName": "Wayne"}
+{"name": "My Book", "founding_date": "1980-01-01T00:00:01", "Location_id":2}
+
 
 ###
 
-POST http://localhost:8080/book
-Accept: */*
-Cache-Control: no-cache
-Content-Type: application/json
-
-{"title": "My Book", "authorIds":[1,3]}
-
-###
-
-POST http://localhost:8080/book
-Accept: */*
-Cache-Control: no-cache
-Content-Type: application/json
-
-{"title": "Moje Kniha", "authorIds":[2], "translationOfBookId":  4}
-
-###
-
-POST http://localhost:8080/book
-Accept: */*
-Cache-Control: no-cache
-Content-Type: application/json
-
-{"title": "Another Book", "authorIds":[3], "translationOfBookId":  4}
-
-###
-
-PUT http://localhost:8080/book/6
-Accept: */*
-Cache-Control: no-cache
-Content-Type: application/json
-
-{"title": "Another Book", "authorIds":[3], "translationOfBookId":  null}
-
-###
+/**GET ++*/

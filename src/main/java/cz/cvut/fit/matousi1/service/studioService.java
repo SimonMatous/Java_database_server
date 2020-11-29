@@ -31,7 +31,7 @@ public class studioService {
     public studioDTO create(studioCreateDTO StudioCreateDTO) throws Exception {
         Optional<location> Location = LocationRepository.findById(StudioCreateDTO.getLocation_id());
         if ( Location.isEmpty())
-            throw new Exception("studio not found");
+            throw new Exception("Location must exist");
 
         return toDTO(
             StudioRepository.save(
@@ -50,10 +50,21 @@ public class studioService {
         Optional<location> Location = LocationRepository.findById(StudioCreateDTO.getLocation_id());
         if ( Location.isEmpty())
             throw new Exception("studio not found");
+
         Studio.setName(StudioCreateDTO.getName());
         Studio.setFounding_date(StudioCreateDTO.getFounding_date());
         Studio.setLocation(Location.get());
         return toDTO(Studio);
+    }
+
+    @Transactional
+    public void delete (int id) throws Exception{
+        Optional<studio> OptionalStudio = findById(id);
+        if ( OptionalStudio.isEmpty())
+            throw new Exception("studio not found");
+        studio Studio = OptionalStudio.get();
+
+        StudioRepository.delete(Studio);
     }
 
     public List<studioDTO> findAll(){

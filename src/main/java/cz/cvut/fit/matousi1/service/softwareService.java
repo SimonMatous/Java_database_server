@@ -30,7 +30,7 @@ public class softwareService {
     public softwareDTO create(softwareCreateDTO SoftwareCreateDTO){
         return toDTO(
             SoftwareRepository.save(
-                    new software(SoftwareCreateDTO.getSoftware_nazev(), SoftwareCreateDTO.getDatum_vyniku())
+                    new software(SoftwareCreateDTO.getSoftware_name(), SoftwareCreateDTO.getFounded_in())
             )
         );
 
@@ -41,9 +41,19 @@ public class softwareService {
         if ( optionalSoftware.isEmpty())
             throw  new Exception("no such software");
         software Software = optionalSoftware.get();
-        Software.setSoftware_nazev(SoftwareCreateDTO.getSoftware_nazev());
-        Software.setDatum_vyniku(SoftwareCreateDTO.getDatum_vyniku());
+        Software.setSoftware_name(SoftwareCreateDTO.getSoftware_name());
+        Software.setFounded_in(SoftwareCreateDTO.getFounded_in());
         return toDTO(Software);
+    }
+
+    @Transactional
+    public void delete (int id) throws Exception{
+        Optional<software> OptionalSoftware = findById(id);
+        if ( OptionalSoftware.isEmpty())
+            throw new Exception("software not found");
+        software Software = OptionalSoftware.get();
+
+        SoftwareRepository.delete(Software);
     }
 
     public List<software> findByIds(List<Integer> ids){
@@ -58,7 +68,7 @@ public class softwareService {
     }
 
     private softwareDTO toDTO(software Software){
-        return new softwareDTO(Software.getId(),Software.getSoftware_nazev(),Software.getDatum_vyniku());
+        return new softwareDTO(Software.getId(),Software.getSoftware_name(),Software.getFounded_in());
     }
     private Optional<softwareDTO> toDTO(Optional<software> OptionalSoftware){
     if ( OptionalSoftware.isEmpty())

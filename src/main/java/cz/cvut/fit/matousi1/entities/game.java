@@ -2,7 +2,6 @@ package cz.cvut.fit.matousi1.entities;
 
 
 import com.sun.istack.NotNull;
-import org.hibernate.annotations.NotFound;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +13,7 @@ import javax.persistence.*;
 
 @Entity
 
-public class hra {
+public class game {
 
     @Id
     @SequenceGenerator(name="SequenceFive",initialValue = 1, allocationSize = 1)
@@ -22,48 +21,48 @@ public class hra {
     private int id;
 
     @NotNull
-    private String nazev;
+    private String name;
 
     @NotNull
     private String hardware;
 
     @NotNull
-    private Timestamp datum_vydani;
+    private Timestamp release_date;
 
-    @NotNull
+
     @ManyToOne
     @JoinColumn( name = "studio_id")
     private studio Studio;
 
     @ManyToMany
     @JoinTable(
-            name = "hra_software",
-            joinColumns = @JoinColumn(name = "hra_id"),
+            name = "game_software",
+            joinColumns = @JoinColumn(name = "game_id"),
             inverseJoinColumns = @JoinColumn ( name = "software_id")
     )
     private List<software> softwares;
 
-    public hra() {
+    public game() {
     }
 
-    public hra(String nazev, String hardware, Timestamp datum_vydani, studio studio, List<software> softwares) {
-        this.nazev = nazev;
+    public game(String name, String hardware, Timestamp release_date, studio studio, List<software> softwares) {
+        this.name = name;
         this.hardware = hardware;
-        this.datum_vydani = datum_vydani;
-        Studio = studio;
+        this.release_date = release_date;
+        this.Studio = studio;
         this.softwares = softwares;
     }
 
-    public Timestamp getDatum_vydani() {
-        return datum_vydani;
+    public Timestamp getRelease_date() {
+        return release_date;
     }
 
-    public void setDatum_vydani(Timestamp datum_vydani) {
-        this.datum_vydani = datum_vydani;
+    public void setRelease_date(Timestamp release_date) {
+        this.release_date = release_date;
     }
 
-    public String getNazev() {
-        return nazev;
+    public String getName() {
+        return name;
     }
 
     public String getHardware() {
@@ -82,8 +81,8 @@ public class hra {
         this.hardware = hardware;
     }
 
-    public void setNazev(String nazev) {
-        this.nazev = nazev;
+    public void setName(String nazev) {
+        this.name = nazev;
     }
 
     public int getId() {

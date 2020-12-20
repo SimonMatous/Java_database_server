@@ -20,16 +20,19 @@ public class savefileController {
     public savefileController(savefileService SavefileService) { this.SavefileService = SavefileService; }
 
     @GetMapping("/savefile/all")
-    List<savefileDTO> all() { return SavefileService.findAll(); }
+    List<savefileDTO> readAll() { return SavefileService.findAll(); }
 
     @GetMapping("/savefile/{id}")
-    savefileDTO byId(@PathVariable int id){
+    savefileDTO readById(@PathVariable int id){
         return SavefileService.findByIdAsDTO(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping("/savefile")
-    savefileDTO save(@RequestBody savefileCreateDTO Savefile) throws Exception { return SavefileService.create(Savefile); }
+    savefileDTO create(@RequestBody savefileCreateDTO Savefile) throws Exception { return SavefileService.create(Savefile); }
 
     @PutMapping("/savefile/{id}")
-    savefileDTO save(@PathVariable int id, @RequestBody savefileCreateDTO Savefile) throws Exception { return SavefileService.update(id,Savefile); }
+    savefileDTO update(@PathVariable int id, @RequestBody savefileCreateDTO Savefile) throws Exception { return SavefileService.update(id,Savefile); }
+
+    @DeleteMapping("/savefile/{id}")
+    void delete(@PathVariable int id) throws Exception { SavefileService.delete(id); }
 }

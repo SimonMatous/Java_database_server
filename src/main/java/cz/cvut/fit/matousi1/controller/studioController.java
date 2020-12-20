@@ -20,16 +20,19 @@ public class studioController {
     public studioController(studioService StudioService) { this.StudioService = StudioService; }
 
     @GetMapping("/studio/all")
-    List<studioDTO> all() { return StudioService.findAll(); }
+    List<studioDTO> readAll() { return StudioService.findAll(); }
 
     @GetMapping("/studio/{id}")
-    studioDTO byId(@PathVariable int id){
+    studioDTO readById(@PathVariable int id){
         return StudioService.findByIdAsDTO(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping("/studio")
-    studioDTO save(@RequestBody studioCreateDTO Studio) throws Exception { return StudioService.create(Studio); }
+    studioDTO create(@RequestBody studioCreateDTO Studio) throws Exception { return StudioService.create(Studio); }
 
     @PutMapping("/studio/{id}")
-    studioDTO save(@PathVariable int id, @RequestBody studioCreateDTO Studio) throws Exception { return StudioService.update(id,Studio); }
+    studioDTO update(@PathVariable int id, @RequestBody studioCreateDTO Studio) throws Exception { return StudioService.update(id,Studio); }
+
+    @DeleteMapping("/studio/{id}")
+    void delete(@PathVariable int id) throws Exception { StudioService.delete(id); }
 }

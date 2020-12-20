@@ -23,7 +23,7 @@ public class savefile {
     private int PercOfGameFinished;
 
     @ManyToOne
-    @NotNull /** CAN I ADD NOT NULL LIKE THIS ? */
+    @NotNull
     @JoinColumn( name = "game_id")
     private game Game;
 

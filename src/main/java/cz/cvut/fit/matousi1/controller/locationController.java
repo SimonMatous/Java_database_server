@@ -15,23 +15,31 @@ public class locationController {
     private final locationService LocationService;
 
     @Autowired
-    public locationController(locationService LocationService) { this.LocationService = LocationService; }
+    public locationController(locationService LocationService) {
+        this.LocationService = LocationService;
+    }
 
 
     @GetMapping("/location/all")
-    List<locationDTO> all() { return LocationService.findAll(); }
+    List<locationDTO> readAll() {
+        return LocationService.findAll();
+    }
 
     @GetMapping("/location/{id}")
-    locationDTO byId(@PathVariable int id) {
+    locationDTO readById(@PathVariable int id) {
         return LocationService.findByIdAsDTO(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
-    /** missing funciton in locationService, first must add findAllBySoftwareName() in locationService, then can uncomment */
-   // @GetMapping(value = "/location", params = {"software"})
-   // List<locationDTO> bySoftwareName(@RequestParam String Software){ return LocationService.findAllBySoftwareName(Software); }
 
     @PostMapping("/location")
-    locationDTO save(@RequestBody locationCreateDTO Location) throws Exception { return LocationService.create(Location); }
+    locationDTO create(@RequestBody locationCreateDTO Location) throws Exception {
+        return LocationService.create(Location);
+    }
 
     @PutMapping("/location/{id}")
-    locationDTO save(@PathVariable int id, @RequestBody locationCreateDTO Location ) throws Exception { return LocationService.update(id,Location); }
+    locationDTO update(@PathVariable int id, @RequestBody locationCreateDTO Location) throws Exception {
+        return LocationService.update(id, Location);
+    }
+
+    @DeleteMapping("/location/{id}")
+    void delete(@PathVariable int id) throws Exception { LocationService.delete(id); }
 }

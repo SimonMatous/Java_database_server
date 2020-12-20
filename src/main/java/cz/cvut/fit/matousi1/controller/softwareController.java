@@ -20,16 +20,19 @@ public class softwareController {
     public softwareController(softwareService SoftwareService) { this.SoftwareService = SoftwareService; }
 
     @GetMapping("/software/all")
-    List<softwareDTO> all() { return SoftwareService.findAll(); }
+    List<softwareDTO> readAll() { return SoftwareService.findAll(); }
 
     @GetMapping("/software/{id}")
-    softwareDTO byId(@PathVariable int id){
+    softwareDTO readById(@PathVariable int id){
         return SoftwareService.findByIdAsDTO(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping("/software")
-    softwareDTO save(@RequestBody softwareCreateDTO Software) { return SoftwareService.create(Software); }
+    softwareDTO create(@RequestBody softwareCreateDTO Software) { return SoftwareService.create(Software); }
 
     @PutMapping("/software/{id}")
-    softwareDTO save(@PathVariable int id, @RequestBody softwareCreateDTO Software) throws Exception { return SoftwareService.update(id,Software); }
+    softwareDTO update(@PathVariable int id, @RequestBody softwareCreateDTO Software) throws Exception { return SoftwareService.update(id,Software); }
+
+    @DeleteMapping("/software/{id}")
+    void delete(@PathVariable int id) throws Exception { SoftwareService.delete(id); }
 }

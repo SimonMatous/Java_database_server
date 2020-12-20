@@ -19,10 +19,10 @@ public class gameController {
 
 
     @GetMapping("/game/all")
-    List<gameDTO> all() { return GameService.findAll(); }
+    List<gameDTO> readAll() { return GameService.findAll(); }
 
     @GetMapping("/game/{id}")
-    gameDTO byId(@PathVariable int id) {
+    gameDTO readById(@PathVariable int id) {
         return GameService.findByIdAsDTO(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
     /** missing funciton in gameService, first must add findAllBySoftwareName() in gameService, then can uncomment */
@@ -30,8 +30,11 @@ public class gameController {
    // List<gameDTO> bySoftwareName(@RequestParam String Software){ return GameService.findAllBySoftwareName(Software); }
 
     @PostMapping("/game")
-    gameDTO save(@RequestBody gameCreateDTO Game) throws Exception { return GameService.create(Game); }
+    gameDTO create(@RequestBody gameCreateDTO Game) throws Exception { return GameService.create(Game); }
 
     @PutMapping("/game/{id}")
-    gameDTO save(@PathVariable int id, @RequestBody gameCreateDTO Game ) throws Exception { return GameService.update(id,Game); }
+    gameDTO update(@PathVariable int id, @RequestBody gameCreateDTO Game ) throws Exception { return GameService.update(id,Game); }
+
+    @DeleteMapping("/game/{id}")
+    void delete(@PathVariable int id) throws Exception { GameService.delete(id); }
 }

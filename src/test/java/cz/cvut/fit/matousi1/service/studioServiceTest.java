@@ -79,4 +79,5 @@ class studioServiceTest {
         BDDMockito.given(StudioRepository.findById(TestLocation.getId())).willReturn(Optional.empty());
         Assertions.assertThrows(Exception.class,()->StudioService.delete(TestStudio.getId()));
     }
+
 }

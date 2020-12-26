@@ -25,9 +25,6 @@ public class gameController {
     gameDTO readById(@PathVariable int id) {
         return GameService.findByIdAsDTO(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
-    /** missing funciton in gameService, first must add findAllBySoftwareName() in gameService, then can uncomment */
-   // @GetMapping(value = "/game", params = {"software"})
-   // List<gameDTO> bySoftwareName(@RequestParam String Software){ return GameService.findAllBySoftwareName(Software); }
 
     @PostMapping("/game")
     gameDTO create(@RequestBody gameCreateDTO Game) throws Exception { return GameService.create(Game); }

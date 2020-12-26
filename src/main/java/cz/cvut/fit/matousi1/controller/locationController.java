@@ -12,13 +12,12 @@ import java.util.List;
 
 @RestController
 public class locationController {
+
+
     private final locationService LocationService;
 
     @Autowired
-    public locationController(locationService LocationService) {
-        this.LocationService = LocationService;
-    }
-
+    public locationController(locationService LocationService) { this.LocationService = LocationService; }
 
     @GetMapping("/location/all")
     List<locationDTO> readAll() {
@@ -31,7 +30,7 @@ public class locationController {
     }
 
     @PostMapping("/location")
-    locationDTO create(@RequestBody locationCreateDTO Location) throws Exception {
+    locationDTO create(@RequestBody locationCreateDTO Location) {
         return LocationService.create(Location);
     }
 

@@ -27,6 +27,7 @@ public class studioController {
         return StudioService.findByIdAsDTO(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/studio")
     studioDTO create(@RequestBody studioCreateDTO Studio) throws Exception { return StudioService.create(Studio); }
 

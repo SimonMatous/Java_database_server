@@ -29,7 +29,8 @@ public class locationController {
     locationDTO readById(@PathVariable int id) {
         return LocationService.findByIdAsDTO(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
-
+ 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/location")
     locationDTO create(@RequestBody locationCreateDTO Location) throws Exception {
         return LocationService.create(Location);

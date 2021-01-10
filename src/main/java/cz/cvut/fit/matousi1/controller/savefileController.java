@@ -27,6 +27,7 @@ public class savefileController {
         return SavefileService.findByIdAsDTO(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/savefile")
     savefileDTO create(@RequestBody savefileCreateDTO Savefile) throws Exception { return SavefileService.create(Savefile); }
 

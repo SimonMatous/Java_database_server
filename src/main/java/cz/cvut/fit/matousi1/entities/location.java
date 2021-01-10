@@ -15,9 +15,7 @@ public class location {
     @NotNull
     private String state;
 
-    
     private String town;
-
 
     private String address;
 
